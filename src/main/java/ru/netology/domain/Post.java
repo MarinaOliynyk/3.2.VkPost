@@ -4,29 +4,43 @@ import javax.xml.crypto.Data;
 
 public class Post {
 
-    private int idAccountPage; //id страницы аккаунта
+    private int idAccountPage; //id страницы аккаунта/владельца стены, на которой размещена запись
     private int idPost; //id публикации
-    private int idOwner; //id автора
+    private int idOwner; //id автора записи (от чьего имени опубликована запись)
+    private int createdBy;// id администратора, который опубликовал запись (для сообществ)
     private String nameOwner; //имя автора/сообщества
     private String iconOwnerUrl; //аватар автора/сообщества
-    private Data datePost; //дата в формате дата + время если текущий год, и если ранее то только дата
+    private Data datePost; //дата в формате unixtime
     private String textPost; //текст публикации, включая заголовок
+    private int replyOwnerId; //id владельца записи, в ответ на которую была оставлена текущая
+    private int replyPostId; // id идентификатор записи, в ответ на которую была оставлена текущая
     private String imagePostUrl; //изображение, gif, видео используемые в публикации
     private String linkPage; //ссылка для перехода
+    private String postType; //тип записи, может принимать следующие значения: post, copy, reply, postpone, suggest
+    private int signerId; //id автора, если запись была опубликована от имени сообщества и подписана пользователем
+    private int postponedId; //id отложенной записи
+    private String copyright;//источник материала
 
+    private boolean friendsOnly; //если запись была создана с опцией «Только для друзей»
     private boolean canComment; //разрешены ли комментарии
     private boolean canDelete; //разрешено удаление
     private boolean canEdit; //разрешено редактирование
     private boolean canComplain; //разрешено "Пожаловаться" на содержание
     private boolean canBookmarkPost; //разрешено добавление в закладки
+    private boolean isFavorite; //объект добавлен в закладки у текущего пользователя
     private boolean canPostPin; //разрешено закрепление публикации
+    private boolean isPostPin; // закрепелена запись
     private boolean canPostUnpin; //разрешено открепление публикации
+    private boolean markedAsAds; //информация о том, содержит ли запись отметку "реклама"
 
     private CommentsInfo commentsInfo; //информация о комментариях
     private LikesInfo likesInfo; //информация "Нравится"
     private SharesInfo sharesInfo; //информация "Поделиться"
     private ViewsInfo viewsInfo; //информация о просмотрах
     private OwnersInfo ownersInfo; //информация об авторах (пользователях/сообществах)
+    private GeoInfo geoInfo; //информация о местоположении
+    private PostSource postSource; //информация о способах размещения записи на стене
+    private Donut donut; //платная подписка
 
     public int getIdAccountPage() {
         return idAccountPage;
@@ -194,5 +208,117 @@ public class Post {
 
     public void setOwnersInfo(OwnersInfo ownersInfo) {
         this.ownersInfo = ownersInfo;
+    }
+
+    public int getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(int createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public int getReplyOwnerId() {
+        return replyOwnerId;
+    }
+
+    public void setReplyOwnerId(int replyOwnerId) {
+        this.replyOwnerId = replyOwnerId;
+    }
+
+    public int getReplyPostId() {
+        return replyPostId;
+    }
+
+    public void setReplyPostId(int replyPostId) {
+        this.replyPostId = replyPostId;
+    }
+
+    public String getPostType() {
+        return postType;
+    }
+
+    public void setPostType(String postType) {
+        this.postType = postType;
+    }
+
+    public int getSignerId() {
+        return signerId;
+    }
+
+    public void setSignerId(int signerId) {
+        this.signerId = signerId;
+    }
+
+    public int getPostponedId() {
+        return postponedId;
+    }
+
+    public void setPostponedId(int postponedId) {
+        this.postponedId = postponedId;
+    }
+
+    public String getCopyright() {
+        return copyright;
+    }
+
+    public void setCopyright(String copyright) {
+        this.copyright = copyright;
+    }
+
+    public boolean isFriendsOnly() {
+        return friendsOnly;
+    }
+
+    public void setFriendsOnly(boolean friendsOnly) {
+        this.friendsOnly = friendsOnly;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
+    public boolean isPostPin() {
+        return isPostPin;
+    }
+
+    public void setPostPin(boolean postPin) {
+        isPostPin = postPin;
+    }
+
+    public boolean isMarkedAsAds() {
+        return markedAsAds;
+    }
+
+    public void setMarkedAsAds(boolean markedAsAds) {
+        this.markedAsAds = markedAsAds;
+    }
+
+    public GeoInfo getGeoInfo() {
+        return geoInfo;
+    }
+
+    public void setGeoInfo(GeoInfo geoInfo) {
+        this.geoInfo = geoInfo;
+    }
+
+    public PostSource getPostSource() {
+        return postSource;
+    }
+
+    public void setPostSource(PostSource postSource) {
+        this.postSource = postSource;
+    }
+
+    public Donut getDonut() {
+        return donut;
+    }
+
+    public void setDonut(Donut donut) {
+        this.donut = donut;
     }
 }

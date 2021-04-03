@@ -13,11 +13,14 @@ public class CommentsInfo {
     private int countComment; //количество комментариев
 
     private boolean canPost; //разрешена публикация комментария
+    private boolean groupsCanPost; //могут ли сообщества комментировать запись
     private boolean canAnswerComment; //разрешено отвечать на комментарии
     private boolean canComplainOnComment; //разрешено "Пожаловаться"
     private boolean canEditComment; //разрешено редактирование
     private boolean canDeleteComment; //разрешено удаление
     private boolean canExport; //разрешен экспорт ссылки комментария
+    private boolean canClose; //может ли текущий пользователь закрыть комментарии к записи
+    private boolean canOpen; //может ли текущий пользователь открыть комментарии к записи
 
     private AttachmentsInfo attachmentsInfo; //информация о вложениях в комментариях
     private LikesInfo likesInfo; //информация о "Нравится"
@@ -158,5 +161,29 @@ public class CommentsInfo {
 
     public void setOwnersInfo(OwnersInfo ownersInfo) {
         this.ownersInfo = ownersInfo;
+    }
+
+    public boolean isGroupsCanPost() {
+        return groupsCanPost;
+    }
+
+    public void setGroupsCanPost(boolean groupsCanPost) {
+        this.groupsCanPost = groupsCanPost;
+    }
+
+    public boolean isCanClose() {
+        return canClose;
+    }
+
+    public void setCanClose(boolean canClose) {
+        this.canClose = canClose;
+    }
+
+    public boolean isCanOpen() {
+        return canOpen;
+    }
+
+    public void setCanOpen(boolean canOpen) {
+        this.canOpen = canOpen;
     }
 }
